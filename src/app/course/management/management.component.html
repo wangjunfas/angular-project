@@ -1,0 +1,47 @@
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      <button class="btn btn-primary" (click)="nav(0)"><span class="glyphicon glyphicon-plus"></span>添加</button>
+    </h3>
+    <div class="box-tools">
+      <div class="input-group input-group-sm" style="width: 150px;">
+        <input type="text" name="table_search" [formControl]="courseFilter" class="form-control pull-right" placeholder="Search">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>课程名称</th>
+        <th>课程价格</th>
+        <th>课程评价</th>
+        <th style="width: 140px">操作</th>
+      </tr>
+      <tr *ngFor="let list of courseList | coursefilter:'name':keywords; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{list.name}}</td>
+        <td>{{list.price}}</td>
+        <td><app-stars (starsNums)="handleEmit($event)" [writable]="true" [rating]="list.rating"></app-stars></td>
+        <td>
+          <button class="btn btn-warning btn-xs" (click)="nav(list.id)"><span class="glyphicon glyphicon-pencil"></span>修改</button> <button class="btn btn-danger btn-xs
+glyphicon glyphicon-remove">删除</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+      <li><a href="#">&laquo;</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">&raquo;</a></li>
+    </ul>
+  </div>
+</div>
